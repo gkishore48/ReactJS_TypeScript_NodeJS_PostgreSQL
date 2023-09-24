@@ -1,0 +1,148 @@
+.App {
+  text-align: center;
+  width: 100w;
+  height: 100vh;
+}
+
+.error {
+  color: #fc8181;
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+button:disabled {
+  opacity: 0.35;
+}
+.login {
+  width: 100;
+  height: 100vh;
+  background: #1a202c;
+  color: #f3f3f3;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+form {
+  width: 95%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  padding-left: 1rem;
+  text-align: left;
+  margin: 1rem 0 0.2rem;
+  color: white;
+}
+
+input,
+select {
+  width: 90%;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  color: black;
+  border: 2px solid #4a5568;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #4299e1;
+}
+
+button {
+  display: block;
+  margin: 1rem 2px;
+  padding: 0.35rem 0.5rem;
+  margin-left: 4rem;
+  background-color: ecf0f1  ;
+  color: #1a202c;
+  border: none;
+  border-radius: 3px;
+  width: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Sidebar {
+  /* height: 100%; */
+  width: 250px;
+  background-color: #49627a;
+}
+
+.filter-area {
+  width: 100%;
+  padding: 10px 20px;
+ }
+
+ .filter-button {
+  /* float: right; */
+  width: 90px;
+  /* margin:12px; */
+  border-radius: 2px;
+  border: #ddd 2px solid;
+ }
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  /* background: -webkit-linear-gradient(45deg, #49a09d, #5f2c82);
+  background: linear-gradient(45deg, #49a09d, #5f2c82); */
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing:0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+thead th {
+  background-color: #49627a;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
