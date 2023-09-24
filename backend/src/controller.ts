@@ -83,7 +83,6 @@ export const getTotalSalesFiltered = (req:Request, res:Response) => {
 export const getCarsFiltered = (req:Request, res:Response) => {
     const { oem, vechileType } = req.query
     if (oem != 'All' && vechileType == 'All') {
-        console.log(vechileType);
         pool.query(`SELECT cm.model_name, cm.model_type,vs.sales, vs.year , ca.name
         FROM public.vehicle_sales vs 
         JOIN public.car_model_details cm on cm.id = vs.model_id 
@@ -99,7 +98,6 @@ export const getCarsFiltered = (req:Request, res:Response) => {
         })   
     }
     else if (oem == 'All' && vechileType != 'All') {
-        console.log(vechileType);
         pool.query(`SELECT cm.model_name, cm.model_type,vs.sales, vs.year , ca.name
         FROM public.vehicle_sales vs 
         JOIN public.car_model_details cm on cm.id = vs.model_id 
@@ -115,7 +113,6 @@ export const getCarsFiltered = (req:Request, res:Response) => {
         })   
     }
     else if (oem == 'All' && vechileType == 'All') {
-        console.log(vechileType);
         pool.query(`SELECT cm.model_name, cm.model_type,vs.sales, vs.year , ca.name
         FROM public.vehicle_sales vs 
         JOIN public.car_model_details cm on cm.id = vs.model_id 
@@ -145,11 +142,3 @@ export const getCarsFiltered = (req:Request, res:Response) => {
         })   
     }
 }
-
-
-// module.exports = {
-//     getCars,
-//     getTotalSales,
-//     getCarsFiltered,
-//     getTotalSalesFiltered
-// }
