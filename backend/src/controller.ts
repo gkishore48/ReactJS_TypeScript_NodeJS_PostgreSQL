@@ -46,8 +46,6 @@ export const getOEM = (req:Request, res:Response) => {
 
 export const getTotalSalesFiltered = (req:Request, res:Response) => {
     const { oem, vechileType } = req.query
-    console.log(oem);
-    console.log(vechileType);
     if (oem != 'All' && vechileType == 'All') {
         pool.query(`SELECT SUM(vs.sales), year FROM public.vehicle_sales vs
         JOIN public.car_model_details cm on cm.id = vs.model_id 
