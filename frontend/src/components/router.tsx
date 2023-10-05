@@ -9,6 +9,6 @@ return (
             <Route path='/' element={<App/>} />
             <Route path='/login' element={<LoginForm/>} />
         </Routes>
-);
+        );
 }
 export default Router;
