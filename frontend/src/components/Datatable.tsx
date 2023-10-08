@@ -53,7 +53,7 @@ const DataTable: FC<dtprops> = (props) => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th style={{color:"white"}} {...column.getHeaderProps()}>{column.render("Header")}</th>
               ))}
             </tr>
           ))}

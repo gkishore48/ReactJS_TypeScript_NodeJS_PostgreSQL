@@ -5,12 +5,18 @@ import LoginForm from './components/LoginForm'
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import Router from './components/router';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const client = new QueryClient()
 root.render(
+    // <React.StrictMode>
+    <QueryClientProvider client={client}>
     <BrowserRouter>
         <Router/>
     </BrowserRouter>
+    </QueryClientProvider>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

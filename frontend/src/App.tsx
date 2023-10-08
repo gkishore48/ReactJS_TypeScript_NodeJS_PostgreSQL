@@ -17,24 +17,23 @@ type ITableData = {
   inventory: Number;
   serviced_vechiles: Number;
 }[]
-
+type ITotalDataType = {
+  sum: string;
+  year: string;
+};
+type ITotalInventoryDataType = {
+  sum: string;
+  year: string;
+};
+type ITotalServicedVechilesDataType = {
+  sum: string;
+  year: string;
+};
 
 const App: FC = () => {
   const [salesData, setSalesData] = useState<ITableData>([]);
   const data = React.useMemo<ITableData>(() => salesData, [salesData]);
   const [loading, setLoading] = useState(false);
-  type ITotalDataType = {
-    sum: string;
-    year: string;
-  };
-  type ITotalInventoryDataType = {
-    sum: string;
-    year: string;
-  };
-  type ITotalServicedVechilesDataType = {
-    sum: string;
-    year: string;
-  };
   const [totalSalesData, setTotalSalesData] = useState<ITotalDataType[]>([]);
   const [totalInventoryData, setTotalInventoryData] = useState<ITotalInventoryDataType[]>([]);
   const [totalServiceData, setTotalServiceData] = useState<ITotalServicedVechilesDataType[]>([]);
@@ -182,22 +181,16 @@ const App: FC = () => {
         console.warn(err)
         setLoading(false);
       });
+      Axios.get("/api/cars/inventory").then((response) => {
+        setTotalInventoryData(response.data);
+      }).catch(err => console.warn(err));
+      Axios.get("/api/cars/sales").then((response) => {
+        setTotalSalesData(response.data);
+      }).catch(err => console.warn(err));
+      Axios.get("/api/cars/serviced_vechiles").then((response) => {
+        setTotalServiceData(response.data);
+      }).catch(err => console.warn(err));
     }
-  }, []);
-  useEffect(() => {
-    Axios.get("/api/cars/sales").then((response) => {
-      setTotalSalesData(response.data);
-    }).catch(err => console.warn(err));
-  }, []);
-  useEffect(() => {
-    Axios.get("/api/cars/inventory").then((response) => {
-      setTotalInventoryData(response.data);
-    }).catch(err => console.warn(err));
-  }, []);
-  useEffect(() => {
-    Axios.get("/api/cars/serviced_vechiles").then((response) => {
-      setTotalServiceData(response.data);
-    }).catch(err => console.warn(err));
   }, []);
   return (
     <>
@@ -209,7 +202,7 @@ const App: FC = () => {
               </h3>
               <a href="#" onClick={onLogoutClicked} style={{ float: "right", color: "wheat" }}>Logout</a>
             </div>
-            <Sidebar filterHandler={filterHandler} />
+            <Sidebar filtersFunction={filterHandler} />
             <div style={{ width: 350, float: "left", padding: 5, margin: 5 }}>
               <h3>Inventory of cars</h3>
               <BarChart chartData={barChartData} />

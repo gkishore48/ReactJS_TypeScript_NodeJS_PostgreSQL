@@ -2,30 +2,29 @@ import { FC, useState, useEffect } from 'react';
 import '../App.css'
 import { Formik, Field, Form } from "formik";
 import Axios from "axios";
+import {useQuery} from '@tanstack/react-query';
 
-type props = {
+type Ifilter = {
   filterHandler: (params: any) => void;
 }
 type IOemDataType = {
   id: string;
   name: string;
-};
+}[];
 type IVechileTypeDataType = {
   model_type: string;
-};
+}[];
 
 
-const Filters: FC<props> = ({ filterHandler }) => {
-  const [oemData, setOemData] = useState<IOemDataType[]>([])
-  const [vechileTypeData, setVechileTypeData] = useState<IVechileTypeDataType[]>([])
-  useEffect(() => {
-    Axios.get("/api/cars/oem").then((response) => {
-      setOemData(response.data);
-    }).catch(err => console.warn(err));
-    Axios.get("/api/cars/vechile_type").then((response) => {
-      setVechileTypeData(response.data);
-    }).catch(err => console.warn(err));
-  }, []);
+const Filters: FC<Ifilter> = ({ filterHandler }) => {
+  const { data: oemData =[]} = useQuery<IOemDataType>(["oemData"], async () => {
+    const response = await Axios.get("/api/cars/oem");
+    return response.data;
+  });
+  const { data: vechileTypeData =[]} = useQuery<IVechileTypeDataType>(["vechileTypeData"], async () => {
+    const response = await Axios.get("/api/cars/vechile_type");
+    return response.data;
+  });
   return (
     <div className="App">
       <Formik
