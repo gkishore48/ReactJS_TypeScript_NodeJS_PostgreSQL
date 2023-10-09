@@ -1,12 +1,16 @@
 import { FC } from 'react';
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { login } from "../store";
+import { useDispatch } from "react-redux";
 
 const LoginForm:FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onSubmit = async (values, actions) => {
     actions.resetForm();
-    localStorage.setItem('name', values.username);
+    // localStorage.setItem('name', values.username);
+    dispatch(login({ username: values.username }))
     navigate("/");
   };
   const { values,errors,touched,isSubmitting,handleBlur,handleChange,handleSubmit,} = useFormik(

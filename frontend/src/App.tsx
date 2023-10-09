@@ -7,6 +7,8 @@ import PieChart from "./components/PieChart";
 import Datatable from "./components/Datatable";
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "./store";
 
 type ITableData = {
   model_name: string;
@@ -31,6 +33,8 @@ type ITotalServicedVechilesDataType = {
 };
 
 const App: FC = () => {
+  const username = useSelector((state: any) => state.user.value.username);
+  const dispatch = useDispatch();
   const [salesData, setSalesData] = useState<ITableData>([]);
   const data = React.useMemo<ITableData>(() => salesData, [salesData]);
   const [loading, setLoading] = useState(false);
@@ -168,6 +172,7 @@ const App: FC = () => {
   }
   const navigate = useNavigate();
   function onLogoutClicked(event) {
+    dispatch(logout());
     navigate("/Login");
   }
   useEffect(() => {
@@ -198,7 +203,7 @@ const App: FC = () => {
         (
           <div className="App">
             <div style={{ backgroundColor: "#49627a", margin: 0, padding: "22px", color: "white" }} >
-              <h3 style={{ margin: 0, textAlign: "right" }}>Welcome {localStorage.getItem("name")}
+              <h3 style={{ margin: 0, textAlign: "right" }}>Welcome {username}
               </h3>
               <a href="#" onClick={onLogoutClicked} style={{ float: "right", color: "wheat" }}>Logout</a>
             </div>
